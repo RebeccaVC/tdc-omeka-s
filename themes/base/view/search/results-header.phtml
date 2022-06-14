@@ -12,16 +12,17 @@
 $plugins = $this->getHelperPluginManager();
 $translate = $plugins->get('translate');
 $translatePlural = $plugins->get('translatePlural');
+$searchPage->setting('display', 'grid_list_mode', 'grid');
 ?>
 
 <div class="search-results-header">
     <div class="search-results-count">
-        <?= $pagination ?>
+        <!-- <?= $pagination ?> -->
     </div>
     <?= $this->searchSortSelector($query, $searchPage->subSetting('sort', 'fields')) ?>
-    <div>
+    <!-- <div>
         <a class="search-view-type search-view-type-list" href="#"><?= $translate('list') ?></a>
         |
         <a class="search-view-type search-view-type-grid" href="#"><?= $translate('grid') ?></a>
-    </div>
+    </div> -->
 </div>

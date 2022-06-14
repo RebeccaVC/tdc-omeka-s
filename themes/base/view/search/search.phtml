@@ -89,13 +89,13 @@ $this->headScript()->appendFile($assetUrl('js/search.js', 'AdvancedSearch'), 'te
 <?php else: ?>
 
     <?php $this->htmlElement('body')->appendAttribute('class', 'search-page resource browse'); ?>
-    <?= $this->pageTitle($translate('Search'), 2) ?>
+    <!-- <?= $this->pageTitle($translate('Search'), 2) ?> -->
+    <?= $this->searchForm($searchPage, null, $skipFormAction) ?>
 
 <?php endif; ?>
 
 <div class="columns">
     <div class="column is-4">
-        <?= $this->searchForm($searchPage, null, $skipFormAction) ?>
 
         <?= $partial('search/facets', [
                 'searchPage' => $searchPage,
@@ -108,9 +108,9 @@ $this->headScript()->appendFile($assetUrl('js/search.js', 'AdvancedSearch'), 'te
     <?php if (isset($response)):
     $documentCount = $response->getTotalResults();
     ?>
-    <div class="column">
+    <div class="column is-multiline">
         <div class="search-results-wrapper">
-            <div class="search-results">
+            <div class="search-results is-multiline">
 
                 <?php if ($documentCount):
                     $itemSetsCount = $response->getResourceTotalResults('item_sets');

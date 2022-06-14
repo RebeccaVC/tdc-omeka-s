@@ -22,7 +22,7 @@ $userBar = $this->userBar();
 
 $url = $this->serverUrl(true);
 //echo 'url:'.$url;
-if (strpos($url, 'page/home') !== false || $url == "http://www.blendeff.be/" || $url == "http://blendeff.be/") {
+if (strpos($url, 'page/home') !== false || $url == "localhost:9018/tdc/s/tdc/" || $url == "localhost:9018/tdc/s/tdc/") {
     $home = true;
 }else{
   $home = false;
@@ -55,12 +55,29 @@ if (strpos($url, 'page/home') !== false || $url == "http://www.blendeff.be/" || 
     <?php echo $userBar; ?>
 
     <header>
-      <section class="hero is-primary is-bold" style="background:url('/tdc/themes/base/asset/img/bg.jpeg') no-repeat center center;background-size: cover;">
+      <section class="hero is-primary is-bold" style="background:url('/tdc/themes/base/asset/img/Architectuur.jpg') no-repeat center center;background-size: cover;">
         <div class="hero-overlay">
           <div class="hero-head">
             <nav class="navbar" role="navigation" aria-label="main navigation">
               <div class="container">
-              <div class="navbar-brand">
+                <div class="navbar-brand">
+              <a class="navbar-item" href="https://www.kuleuven.be/kuleuven/">
+            <img
+              class="logo"
+              alt="logo"
+              src="https://stijl.kuleuven.be/releases/latest/img/svg/logo.svg"
+              width="157"
+              height="56"
+            />
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+          </a>
+          </a>
+</div>
+
+              <!-- <div class="navbar-brand">
                 <a class="navbar-item" href="<?php echo $site->url(); ?>">
 
                 </a>
@@ -69,7 +86,7 @@ if (strpos($url, 'page/home') !== false || $url == "http://www.blendeff.be/" || 
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
-              </div>
+              </div> -->
               <div class="navbar-menu">
                 <div class="navbar-start">
 
@@ -82,12 +99,16 @@ if (strpos($url, 'page/home') !== false || $url == "http://www.blendeff.be/" || 
                       ]);
                     ?>
                   </div>
-                  <div class="navbar-item">
+                  <div class="navbar-item search-menu">
+          <?php echo $this->partial('common/search-form'); ?>
+        </div>
+
+                  <!-- <input class="input" type="text" placeholder="Search">
                      <button class="button is-primary" id="showSearch">
                         <span class="icon is-small">
                           <i class="fas fa-search"></i>
                         </span>
-                      </button>
+                      </button> -->
                   </div>
                 </div>
               </div>
@@ -104,16 +125,20 @@ if (strpos($url, 'page/home') !== false || $url == "http://www.blendeff.be/" || 
                   <?php endif; ?>
                 </div>
                 <div class="column">
-                  <h1 class="title is-family-secondary is-1">Blendeff</h1>
-                  <h2 class="subtitle is-family-secondary is-4">Wetenschappelijke collecties en kunstverzamelingen KU Leuven</h2>
+                  <h1 class="title is-family-secondary is-1">Materialendatabank</h1>
+
                   <?php if($home):?>
                     <div class="hero-text is-size-7">
                       <div class="content">
-                        <p>
-                          Van een zestiende-eeuws familieportret tot het skelet van een Groenlandse walvis. Van prehistorische schelpen tot Servranckx’ <em>Machine à émouvoir</em>. De universiteit heeft in haar lange geschiedenis een omvangrijk patrimonium aan waardevolle stukken en representatieve collecties bijeengebracht. Een academisch erfgoed dat met grote zorg en vakkundigheid wordt bewaard, voor nu en voor later.
-                        </p>
+                      <h2 class="subtitle is-family-secondary">Ontdek de materialencollectie van de materialenbibliotheek op Campus Sint-Lucas Gent.</h2>
                       </div>
+                      <div class="search-menu">
+          <?php echo $this->partial('common/search-form'); ?>
+        </div>
                     </div>
+                    <div class="search-menu">
+          <?php echo $this->partial('common/search-form'); ?>
+        </div>
                   <?php endif;?>
                 </div>
               </div>

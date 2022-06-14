@@ -2,8 +2,8 @@
 $translate = $this->plugin('translate');
 $escape = $this->plugin('escapeHtml');
 $labelInfo = $this->setting('property_label_information');
-$not = array('Title','Description','Is Version Of','Is Part Of','Language','Provenance');
-$notalt = array('Collectie ID','Referenties object','Beeld','Beeld copyright');
+$not = array('korte beschrijving','vindplaats');
+$notalt = array('korte beschrijving', 'Collectie ID','Referenties object','Beeld','Beeld copyright');
 ?>
 
 <?php foreach ($templateProperties as $term => $property): ?>
@@ -57,8 +57,8 @@ $notalt = array('Collectie ID','Referenties object','Beeld','Beeld copyright');
                 <span class="language"><?php echo $language; ?></span>
                 <?php endif; ?>
 
-                <?php if($propertyData['alternate_label'] == 'Thema'):?>
-                  <a target="_blank" href="/nl/item-set?fulltext_search=&property[0][joiner]=and&property[0][property]=8&property[0][type]=eq&property[0][text]=<?php echo $value->asHtml(); ?>&resource_class_id[]=&resource_template_id[]=&submit=Zoeken"><?php echo $value->asHtml(); ?></a>
+                <?php if($propertyData['property']->label() == 'categorie'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:categorie][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
                 <?php elseif($propertyData['alternate_label'] == 'Department/Research/Group/Unit'):?>                  
                   <a href="<?php echo '/herkul/s/en/find?q=&facet[schema:subOrganization][0]='.$value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
                  <?php elseif($propertyData['alternate_label'] == 'Faculty'):?>                  

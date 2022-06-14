@@ -41,11 +41,39 @@ if ($bodyTerm) {
 
 $defaultThumbnail = '<img src="' . $assetUrl('thumbnails/default.png', 'Omeka') . '" title="' . $translate('No media') . '"/>';
 ?>
+<style>
+    .flexgrid {
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        grid-template-rows: 33% 33% 33%;
+        justify-items: stretch;
+        align-items: stretch;
+        grid-gap: 6px;
+    }
 
+    .flexrow {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .flexcol {
+        flex: 33.33%;
+        padding: 5px;
+    }
+
+    .flexitem {
+        align-content: stretch;
+    }
+
+    .flexitem img {
+        width: 100%;
+    }
+
+</style>
 <?php if ($title): ?>
 <h3><?= $escape($title) ?></h3>
 <?php endif; ?>
-<ul class="resource-list search-results-list">
+<!-- <ul class="resource-list preview">
     <?php /** @var \Omeka\Api\Representation\AbstractResourceEntityRepresentation $resource */
     foreach ($resources as $resource):
         $resourceType = $resource->resourceName();
@@ -56,16 +84,45 @@ $defaultThumbnail = '<img src="' . $assetUrl('thumbnails/default.png', 'Omeka') 
     ?>
 
     <li class="resource <?= $resourceType ?>">
+         <h4><?= $heading ?></h4>
         <div class="resource-thumbnail">
             <?= $hyperlink->raw($thumbnail, $resource->url(), ['class' => 'resource-link']) ?>
         </div>
         <div class="resource-metadata">
+            <h4><span><?= $heading ?></span></h4>
             <h4><?= $resource->link($heading) ?></h4>
-            <div class="description">
+             <div class="description">
                 <?= $escape($body) ?>
             </div>
         </div>
     </li>
 
     <?php endforeach; ?>
+</ul> -->
+
+<section class="section">
+<ul class="columns is-multiline">
+<?php /** @var \Omeka\Api\Representation\AbstractResourceEntityRepresentation $resource */
+    foreach ($resources as $resource):
+        $resourceType = $resource->resourceName();
+        $media = $resource->primaryMedia();
+        $thumbnail = $media ? $thumbnailHelper($media, 'large') : $defaultThumbnail;
+        $heading = $headingTerm ? $resource->value($headingTerm, $headingOptions) : $resource->displayTitle(null, $headingOptions);
+        $body = $bodyTerm ? $resource->value($bodyTerm, $bodyOptions) : $resource->displayDescription(null, $bodyOptions);
+        ?>
+        <li class="column is-one-third">
+            <div class="card equal-height">
+                <a href="<?php echo $resource->url(); ?>">
+                    <div class="card-top">
+                        <h4 class="title is-6 is-family-secondary has-text-centered">
+                            <?= $heading ?>
+                        </h4>
+                    </div>
+                    <div class="card-bg-img-2" style="background:url(<?php echo $media->thumbnailUrl('medium'); ?>) center 20%;background-color:#aaa;background-size: cover;">
+                    </div>
+                </a>
+            </div>
+        </li>
+    <?php endforeach; ?>
 </ul>
+</section>

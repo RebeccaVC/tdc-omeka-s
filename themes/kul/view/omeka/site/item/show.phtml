@@ -12,6 +12,11 @@ else:
   $type = "";
 endif;
 ?>
+<style>
+  a {
+    text-decoration: none;
+  }
+</style>
 <div class="container">
   <div >
     <div id="portal-breadcrumbs" class="breadcrumbs" style="display:block;">
@@ -139,7 +144,24 @@ endif;
         </div>         
       <?php endif;?>
       <div class="col-xs-12 col-md-8">
-        <div class="text-box" style="height:100%;margin-bottom:0;">
+        <span class="text-right"><?php echo $item->value('tdc:vindplaats');?></span>
+        <div class="text-box card-gray" style="height:100%;margin-bottom:0;">
+          <div><?php echo $item->value('tdc:korteBeschrijving');?></div>
+          <div>
+          <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:toepassingen][]=draagstructuur" class="badge badge-primary">
+            <img src="/tdc/themes/kul/asset/img/biohazard.png">
+          </a>
+          <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:toepassingen][]=afwerking - wand(binnen)" class="badge badge-secondary">
+          <img src="/tdc/themes/kul/asset/img/billiards.png">
+          </a>
+          <a href="#" class="badge badge-success" disabled>
+          <img style="opacity: 0.2;" src="/tdc/themes/kul/asset/img/bell-alert-outline.png">
+          </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12" style="padding-top: 5%">
+        <div class="text-box card card-gray" style="height:100%;margin-bottom:0;">
           <?php echo $item->displayValues(); ?>
         </div>
       </div>
