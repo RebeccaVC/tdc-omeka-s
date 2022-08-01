@@ -133,6 +133,9 @@ class BrowseBlock extends AbstractBlockLayout
         if (!isset($query['sort_order'])) {
             $query['sort_order'] = 'desc';
         }
+        if (!isset($query['resource_template_id'])) {
+            $query['resource_template_id'] = '3';
+        }
 
         $response = $view->api()->search($resourceType, $query);
         $resources = $response->getContent();

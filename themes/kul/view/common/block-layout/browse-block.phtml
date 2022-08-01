@@ -1,5 +1,7 @@
 <?php
 $translate = $this->plugin('translate');
+$plugins = $this->getHelperPluginManager();
+$assetUrl = $plugins->get('assetUrl');
 ?>
 <style>
   .card-img-top {
@@ -168,21 +170,27 @@ $translate = $this->plugin('translate');
                   else:
                     $mediaurl = str_replace('http:', '', $media[0]->thumbnailUrl('medium'));
                   endif;
+                else:
+                  $mediaurl = $assetUrl('thumbnails/default.png', 'Omeka', true); 
                 endif;
               endif;
               $url = $resource->url();
             ?>
-  <div class="col-xs-12 <?php echo $block->dataValue('columns');?>">
-  <a href="<?php echo $url;?>">
-    <div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="<?php echo  $mediaurl;?>" />
+  <div class="col-xs-12 <?php echo $block->dataValue('columns');?>" style="margin-bottom: 2%;">
+  <a href="<?php echo $url;?>" style="text-decoration: none;">
+    <div class="card-gray"><img alt="<?php echo $resource->displayTitle();?>" class="card-img-top img-fluid" src="<?php echo  $mediaurl;?>" />
       <div class="card-block">
-        <h4 class="card-header"><?php echo $resource->value('dcterms:title');?></h4>
+        <h4 class="card-tag"><?php echo $resource->displayTitle();?></h4>
       </div>
     </div>
   </a>
   </div>
   <?php endforeach; ?>
 </div>
+<div class="text-center">
+<a class="btn btn-primary" style="margin:3%;" href="/tdc/s/tdc/find?sort=dcterms%3Adate+desc">Meer zoeken</a>
+            </div>
      </div>
      <?php endif;?>
+     
 </section>

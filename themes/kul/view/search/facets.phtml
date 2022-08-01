@@ -40,11 +40,24 @@ if (!empty($itemSet)) {
 $options = $searchPage->setting('facet', []);
 ?>
 
+<style>
+    li,ul{
+        list-style-type: none;
+    }
+    details,summary{
+        display: list-item;
+    }
+    h4{
+        display:inline;
+    }
+</style>
+
 <aside class="search-facets">
 
     <h3><?= $translate('Facets') ?></h3>
 
     <?php if ($displayActive && count($activeFacets)): ?>
+        <!-- <?php var_dump($activeFacets); ?> -->
     <h4><?= $translate('Active facets') ?></h4>
     <ul class="search-facets-active">
         <?php foreach ($activeFacets as $name => $facetValues) foreach ($facetValues as $facetValue): ?>
@@ -71,12 +84,16 @@ $options = $searchPage->setting('facet', []);
         <ul class="search-facets-list">
             <?php foreach ($facets as $name => $facetValues): ?>
             <li class="search-facet">
-                <h4><?= $translate($facetLabel($name)) ?></h4>
-                <?php if (($options['facets'][$name]['type'] ?? 'Checkbox') === 'Select'): ?>
-                <?= $facetSelect($name, $facetValues, $options) ?>
-                <?php else: ?>
-                <?= $facetElements($name, $facetValues, $options) ?>
-                <?php endif; ?>
+                <details>
+                    <summary>
+                        <h4><?= $translate($facetLabel($name)) ?></h4>
+                    </summary>
+                    <?php if (($options['facets'][$name]['type'] ?? 'Checkbox') === 'Select'): ?>
+                    <?= $facetSelect($name, $facetValues, $options) ?>
+                    <?php else: ?>
+                    <?= $facetElements($name, $facetValues, $options) ?>
+                    <?php endif; ?>
+                </details>
             </li>
             <?php endforeach; ?>
         </ul>

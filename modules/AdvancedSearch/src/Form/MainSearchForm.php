@@ -120,7 +120,7 @@ class MainSearchForm extends Form
                 'name' => 'q',
                 'type' => Element\Search::class,
                 'options' => [
-                    'label' => 'Search', // @translate
+                    'label' => 'Zoeken', // @translate
                 ],
                 'attributes' => [
                     'id' => 'q',
@@ -230,7 +230,7 @@ class MainSearchForm extends Form
                 'name' => 'submit',
                 'type' => Element\Button::class,
                 'options' => [
-                    'label' => 'Search', // @translate
+                    'label' => 'Zoek', // @translate
                     'label_attributes' => [
                         'class' => 'search-submit',
                     ],

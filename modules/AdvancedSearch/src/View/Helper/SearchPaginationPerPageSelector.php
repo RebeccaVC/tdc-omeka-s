@@ -30,7 +30,7 @@ class SearchPaginationPerPageSelector extends AbstractHelper
         $plugins = $this->getView()->getHelperPluginManager();
         $status = $plugins->get('status');
         $setting = $plugins->get('setting');
-        $defaultPerPage = (int) $setting('pagination_per_page', 25) ?: 25;
+        $defaultPerPage = (int) $setting('pagination_per_page', 20) ?: 20;
         if ($status->isSiteRequest()) {
             $siteSetting = $plugins->get('siteSetting');
             $defaultPerPage = (int) $siteSetting('pagination_per_page') ?: $defaultPerPage;

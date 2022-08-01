@@ -633,7 +633,7 @@ class Module extends AbstractModule
         $view->headLink()
             ->appendStylesheet($assetUrl('vendor/chosen-js/chosen.css', 'Omeka'));
         $view->headScript()
-            ->appendFile($assetUrl('vendor/chosen-js/chosen.jquery.js', 'Omeka'), 'text/javascript', ['defer' => 'defer'])
+            // ->appendFile($assetUrl('vendor/chosen-js/chosen.jquery.js', 'Omeka'), 'text/javascript', ['defer' => 'defer'])
             ->appendFile($assetUrl('js/search.js', 'AdvancedSearch'), 'text/javascript', ['defer' => 'defer']);
 
         // For the main search field in the left sidebar in admin.

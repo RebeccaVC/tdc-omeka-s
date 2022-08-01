@@ -40,11 +40,15 @@ $defaultThumbnail = '<img src="' . $assetUrl('thumbnails/default.png', 'Omeka', 
     height: 15vw;
     object-fit: cover;
     padding-top: 0%;
+    border-radius: unset;
 }
-  </style>
-<?php if ($title): ?>
+a, a:hover, a:focus {
+    text-decoration: none;
+}
+</style>
+<!-- <?php if ($title): ?>
 <h3><?= $escape($title) ?></h3>
-<?php endif; ?>
+<?php endif; ?> -->
 <!-- <ul class="resource-list search-results-list<?= $gridListMode === 'list_only' ? ' list' : ($gridListMode === 'grid_only' ? ' grid' : '') ?>">
     <?php /** @var \Omeka\Api\Representation\AbstractResourceEntityRepresentation $resource */
     foreach ($resources as $resource):
@@ -86,14 +90,14 @@ $defaultThumbnail = '<img src="' . $assetUrl('thumbnails/default.png', 'Omeka', 
         $thumbnails = $resource->media();
         $thumbnailUrl = '' . $assetUrl('thumbnails/default.png', 'Omeka', true) . '';
         if ($thumbnails):
-            $thumbnailUrl = str_replace('http:', '', $thumbnails[0]->thumbnailUrl('medium'));
+            $thumbnailUrl = str_replace('http:', '', $thumbnails[0]->thumbnailUrl('square'));
         endif;
     ?>
-<div class="col-md-6 col-lg-3">
-<a class="btn" href="<?php echo $url;?>">
+<div class="col-md-6 col-lg-3" style="padding-bottom:1%;">
+<a href="<?php echo $url;?>">
   <div class="card-secondary">
-  <div class="card-text btn">
-      <h4 class="card-title"><?php echo $heading;?></h4>
+  <div class="card-text" style="padding:5%;">
+      <h4 class="card-tag text-center"><?php echo $heading;?></h4>
     </div>
   <img class="card-img-top img-fluid" src="<?php echo  $thumbnailUrl;?>" alt="<?php echo $heading;?>">
   </div>
