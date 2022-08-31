@@ -31,7 +31,7 @@ if (isset($displayParts['per_pages']) && $perPages = $searchPage->subSetting('pa
     // Can be simplified in a theme.
     $setting = $plugins->get('setting');
     $defaultPerPage = $this->status()->isSiteRequest() ? ($plugins->get('siteSetting')('pagination_per_page') ?: $setting('pagination_per_page', 20)) : $setting('pagination_per_page', 20);
-    $perPages = array_replace([(int) $defaultPerPage => sprintf($translate('Results by %d'), $defaultPerPage)], $perPages);
+    $perPages = array_replace([(int) $defaultPerPage => sprintf($translate('Resultaten per %d'), $defaultPerPage)], $perPages);
     ksort($perPages);
     $perPage = $query->getPerPage() ?: null;
 }
@@ -63,7 +63,7 @@ De informatie in de databank is gebaseerd op technische documentatie aangeleverd
 
 
 
-<?php if (isset($displayParts['sort']) && $sortFields = $searchPage->subSetting('sort', 'fields')): ?>
+<?php if (isset($displayParts['sort']) && $sortFields = $searchPage->subSetting('sort', 'fields')):?>
 <div class="btn" style="padding-left: 0%;margin-bottom: 2%;">
     <h3><?php echo $response->getTotalResults(); ?> items</h3>
 </div>
