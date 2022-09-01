@@ -125,7 +125,7 @@ $assetUrl = $plugins->get('assetUrl');
       <h2 class="title is-3 is-family-secondary"><?php echo $this->heading; ?></h2>
     <?php endif; ?>
 
-    <?php if($block->dataValue('text')):?>
+    <?php if($block->dataValue('text') && !$block->dataValue('columns') == 'col-md-6 kijker'):?>
       <div class="content">
               <?php echo $block->dataValue('text');?>
       </div>
@@ -133,6 +133,13 @@ $assetUrl = $plugins->get('assetUrl');
 
     <?php if($this->resources):?>
   <div class="row">
+  <?php if($block->dataValue('text') && $block->dataValue('columns') == 'col-md-6 kijker'):?>
+  <div class="content col-md-6">
+              <?php echo $block->dataValue('text');?>
+  </div>
+  <div class="col-md-6">
+    <div class="row">
+  <?php endif; ?>
   <?php
       $headingTerm = $this->siteSetting('browse_heading_property_term', 'dcterms:title');
       $bodyTerm = $this->siteSetting('browse_body_property_term', 'dcterms:description');
@@ -176,6 +183,7 @@ $assetUrl = $plugins->get('assetUrl');
               endif;
               $url = $resource->url();
             ?>
+
   <div class="col-xs-12 <?php echo $block->dataValue('columns');?>" style="margin-bottom: 2%;">
   <a href="<?php echo $url;?>" style="text-decoration: none;">
     <div class="card-gray"><img alt="<?php echo $resource->displayTitle();?>" class="card-img-top img-fluid" src="<?php echo  $mediaurl;?>" />
@@ -186,7 +194,11 @@ $assetUrl = $plugins->get('assetUrl');
   </a>
   </div>
   <?php endforeach; ?>
+            </div>
 </div>
+<?php if($block->dataValue('text') && $block->dataValue('columns') == 'col-md-6 kijker'):?>
+     </div>
+<?php endif;?>
 <div class="text-center">
 <a class="btn btn-primary" style="margin:3%;" href="/tdc/s/tdc/find?sort=dcterms%3Adate+desc">Meer zoeken</a>
             </div>

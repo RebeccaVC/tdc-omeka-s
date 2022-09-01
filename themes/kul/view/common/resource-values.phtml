@@ -71,12 +71,40 @@ $notalt = array('korte beschrijving', 'Collectie ID','Referenties object','Beeld
                   <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:duurzaamheidslabel][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
                 <?php elseif($propertyData['property']->label() == 'levenscyclus - oorsprong'):?>
                   <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:levenscyclusOorsprong][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
-                <?php elseif($propertyData['alternate_label'] == 'Department/Research/Group/Unit'):?>                  
-                  <a href="<?php echo '/herkul/s/en/find?q=&facet[schema:subOrganization][0]='.$value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
-                 <?php elseif($propertyData['alternate_label'] == 'Faculty'):?>                  
-                  <a href="<?php echo '/herkul/s/en/find?q=&facet[schema:parentOrganization][0]='.$value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
-                <?php elseif($propertyData['alternate_label'] == 'Research keywords'):?>                  
-                  <a href="<?php echo '/herkul/s/en/find?q=&facet[schema:keywords][0]='.$value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                <?php elseif($propertyData['property']->label() == 'waterafstotend'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:waterafstotend][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                <?php elseif($propertyData['property']->label() == 'akoestisch - absorberend'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:akoestischAbsorberend][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'akoestisch - isolerend'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:akoestischIsolerend][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'elektrische weerstand'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:elektrischeWeerstand][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'optisch - lichtreflectie'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:optischLichtreflectie][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'optisch - transparantie'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:optischTransparantie][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'UV-bestendig'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:uvbestendig][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'levenscyclus - afvalfase'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:levenscyclusAfvalfase][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'EPD (Environmental Product Declaration)'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:epd][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'insectenbestendig'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:insectenbestendig][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'krasbestendig'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:krasbestendig][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'chemisch bestendig'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:chemischbestendig][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'corrosiebestendig'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:corrosiebestendig][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'vorstbestendig'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:vorstbestendig][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'vochtbestendig'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:vochtbestendig][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'schimmelbestendig'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:schimmelbestendig][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                  <?php elseif($propertyData['property']->label() == 'brandvertragend'):?>
+                  <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:brandvertragend][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
                 <?php else:?>
                   <?php echo $value->asHtml(); ?>
                 <?php endif;?>
