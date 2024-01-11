@@ -144,7 +144,7 @@ endif;
     </div>
   </div>
   <?php else:?>
-    <div class="row" style="margin-bottom: 2.5rem;">
+    <div class="row" style="margin-bottom: 2rem;">
     <div class="col-xs-12 col-md-7">
         <span class="text-left"><h3>Vindplaats Gent: <?php echo $item->value('tdc:vindplaats');?></h3></span>
         <?php if ($item->value('tdc:vindplaatsBrussel')): ?>
@@ -152,17 +152,18 @@ endif;
         <?php endif; ?>
         <div class="text-box card card-gray" style="margin-bottom:0; margin-top:10px;">
           <div style="margin:5%"><?php echo $item->value('tdc:korteBeschrijving');?></div>
-          <div style="padding:5%;">
+          <div style="padding:15%;">
           <?php
                 $toepassingen = $item->value('tdc:toepassingen', ['all' => true]);
                 foreach ($alleToepassingen as $toep){ 
+                    $png = "img/" . $toep . ".png";
                     if (in_array($toep,$toepassingen)): ?>
-                    <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:toepassingen][]=<?php echo $toep;?>" data-toggle="tooltip" title="<?php echo $toep;?>" class="badge badge-primary">
-                    <img src="/tdc/themes/kul/asset/img/<?php echo $toep;?>.png">
+                    <a target="_blank" href="/materialendatabank/s/tdc/find?facet[tdc:toepassingen][]=<?php echo $toep;?>" data-toggle="tooltip" title="<?php echo $toep;?>" class="badge badge-primary">
+                    <img style="width: 34px;height: 34px;" src="<?php echo $this->assetUrl($png);?>">
                     </a>
               <?php else: ?>
-                <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:toepassingen][]=<?php echo $toep;?>" data-toggle="tooltip" title="<?php echo $toep;?>" class="badge badge-secondary">
-                <img style="opacity: 0.2;" src="/tdc/themes/kul/asset/img/<?php echo $toep;?>.png">
+                <a target="_blank" href="/materialendatabank/s/tdc/find?facet[tdc:toepassingen][]=<?php echo $toep;?>" data-toggle="tooltip" title="<?php echo $toep;?>" class="badge badge-secondary">
+                <img style="width: 34px;height: 34px;" style="opacity: 0.2;" src="<?php echo $this->assetUrl($png);?>">
                 </a>
               <?php endif; } ?>
           </div>
@@ -259,12 +260,3 @@ $subjectValues = $item->subjectValues();
     });
   });
 </script>
-
-
-<!--
-   Voor icoontjes van toepassingen in de fiche (hier show.phtml) 
-   for each, check of in array van tdc:toepassingen zit -> ja, gewoon div,a,img aanmaken
-   nee -> div,a,img aanmaken disabled en opacity naar 0.2 ofzo
-   href="/tdc/s/tdc/find?facet[tdc:toepassingen][]=" dan value item voor toepassingen aka degene die
-   nagekeken werd om te zien of ze in array zat of niet.
--->

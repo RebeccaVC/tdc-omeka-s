@@ -45,7 +45,7 @@ class BrowseBlock extends AbstractBlockLayout
             'type' => Element\Text::class,
             'options' => [
                 'label' => 'Description', // @translate
-                'info' => 'Description that appears above the items'
+                'info' => 'Description that appears with the items'
             ],
         ]);
         $form->add([
@@ -134,9 +134,9 @@ class BrowseBlock extends AbstractBlockLayout
         if (!isset($query['sort_order'])) {
             $query['sort_order'] = 'desc';
         }
-        if (!isset($query['resource_template_id'])) {
-            $query['resource_template_id'] = '3';
-        }
+        // if (!isset($query['resource_template_id'])) {
+        //     $query['resource_template_id'] = '3';
+        // }
 
         $response = $view->api()->search($resourceType, $query);
         $resources = $response->getContent();

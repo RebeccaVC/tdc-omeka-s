@@ -12,9 +12,11 @@ $alleCategorie = array('hout','metaal','kunststof','textiel','glas','steen (incl
 
                     <div class="media-list" style="padding:5%;">
                 <?php
-                foreach ($alleCategorie as $categie):?>
-                        <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:categorie][]=<?php echo $categie;?>" data-toggle="tooltip" title="<?php echo $categie;?>" class="badge btn-primary">
-                            <img src="/tdc/themes/kul/asset/img/<?php echo $categie;?>.png">
+                foreach ($alleCategorie as $categie):
+                $png = "img/" . $categie . ".png";
+                ?>
+                        <a target="_blank" href="/materialendatabank/s/tdc/find?facet[tdc:categorie][]=<?php echo $categie;?>" data-toggle="tooltip" title="<?php echo $categie;?>" class="badge btn-primary">
+                            <img src="<?php echo $this->assetUrl($png);?>">
                         </a>
                 <?php endforeach;
                 ?>
@@ -29,9 +31,11 @@ $alleCategorie = array('hout','metaal','kunststof','textiel','glas','steen (incl
 
                     <div class="media-list" style="padding:5%;">
                 <?php
-                foreach ($alleToepassingen as $toep):?>
-                        <a target="_blank" href="/tdc/s/tdc/find?facet[tdc:toepassingen][]=<?php echo $toep;?>" data-toggle="tooltip" title="<?php echo $toep;?>" class="badge btn-primary">
-                            <img src="/tdc/themes/kul/asset/img/<?php echo $toep;?>.png">
+                foreach ($alleToepassingen as $toep):
+                $png = "img/" . $toep . ".png";
+                ?>
+                        <a target="_blank" href="/materialendatabank/s/tdc/find?facet[tdc:toepassingen][]=<?php echo $toep;?>" data-toggle="tooltip" title="<?php echo $toep;?>" class="badge btn-primary">
+                            <img style="width: 40px;height: 40px;" src="<?php echo $this->assetUrl($png);?>">
                         </a>
                 <?php endforeach;
                 ?>

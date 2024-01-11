@@ -9,137 +9,30 @@ $assetUrl = $plugins->get('assetUrl');
     height: 15vw;
     object-fit: cover;
     padding-top: 0%;
-}
-  </style>
+  }
+</style>
 <section class="section">
-  <!-- <div class="container">
-    <?php if ($this->heading): ?>
-      <h2 class="title is-3 is-family-secondary"><?php echo $this->heading; ?></h2>
-    <?php endif; ?>
-
-    <?php if($block->dataValue('text')):?>
-      <div class="content">
-              <?php echo $block->dataValue('text');?>
-      </div>
-    <?php endif; ?>
-
-    <?php if($this->resources):?>
-    <div class="row">
-      <?php
-      $headingTerm = $this->siteSetting('browse_heading_property_term', 'dcterms:title');
-      $bodyTerm = $this->siteSetting('browse_body_property_term', 'dcterms:description');
-
-      foreach ($this->resources as $resource):
-        $heading = $resource->value($headingTerm, ['default' => $translate('[Untitled]')]);
-        $body = $resource->value('dcterms:description');
-        if($resourceType == 'item-set'):
-          $body = $resource->value('dcterms:description');
-        endif;
-        $type = $resource->resourceTemplate();
-        if($type):
-          $type= $type->label();
-        elseif($resourceType == 'item-set'):
-          $type= 'Collection';
-        else:
-          $type= "Object";
-        endif;
-      ?>
-      <div class="card-deck">
-            <?php
-              $mediaurl = "";
-              if($resourceType == 'item-set'):
-                $media = $resource->thumbnail();
-                if($media):
-                  if(sizeof($this->resources) <= 2):
-                    $mediaurl = str_replace('http:','',$media->assetUrl('large'));
-                  else:
-                    $mediaurl = str_replace('http:','',$media->assetUrl('medium'));
-                  endif;
-                endif;
-              else:
-                $media = $resource->media();
-                if($media):
-                  if(sizeof($this->resources) <= 2):
-                    $mediaurl = str_replace('http:', '', $media[0]->thumbnailUrl('large'));
-                  else:
-                    $mediaurl = str_replace('http:', '', $media[0]->thumbnailUrl('medium'));
-                  endif;
-                endif;
-              endif;
-              $url = $resource->url();
-            ?>
-
-            <div class="card text-center">
-              <a href="<?php echo $url;?>">
-              <div class="card-top">
-                 <?php if($resource->value('dcterms:date')):?>
-                  <h6 class="subtitle is-7 datering"><?php echo date('d-m-Y',strtotime($resource->value('dcterms:date')));?></h6>
-                <?php endif;?>
-                <h5 class="card-title">
-                    <?php echo $resource->value('dcterms:title');?>
-                </h5>
-              </div>
-              <img class="card-img-bottom"
-                src="<?php echo  $mediaurl;?>"
-                >
-            </img>
-              <div class="card-content">
-                <div class="content">
-                  <?php $body = $resource->value('dcterms:description');?>
-                  <?php if ($body): ?>
-                    <?php
-                      if(strlen($body) > 200):
-                        $body = substr($body, 0, 200);
-                        $body = substr($body, 0, strrpos($body, ' ')).' ...';
-                      endif;
-                    ?>
-                    <p>
-                      <?php echo $body; ?>
-                    </p>
-                  <?php endif; ?>
-                </div>
-              </div>
-            </a>
-          </div>
-      <?php endforeach; ?>
-    </div>
-    </div>
-    <?php if ($this->linkText):?>
-      <div class="has-text-right">
-        <?php if($this->linkText == 'All collections'):?>
-          <a href="<?php echo $block->page()->site()->url().'/item-set';?>" class="button is-white">
-            <?php echo $this->linkText;?>
-          </a>
-        <?php else:?>
-          <a href="<?php echo $block->page()->site()->url().'/page/'.strtolower($type);?>" class="button is-white">
-            <?php echo $this->linkText;?>
-          </a>
-        <?php endif;?>
-      </div>
-    <?php endif;?>
-    <?php endif;?>
-  </div> -->
-
-     <div class="container">
-    <?php if ($this->heading): ?>
-      <h2 class="title is-3 is-family-secondary"><?php echo $this->heading; ?></h2>
-    <?php endif; ?>
-
-    <?php if($block->dataValue('text') && !$block->dataValue('columns') == 'col-md-6 kijker'):?>
-      <div class="content">
-              <?php echo $block->dataValue('text');?>
-      </div>
-    <?php endif; ?>
-
-    <?php if($this->resources):?>
-  <div class="row">
-  <?php if($block->dataValue('text') && $block->dataValue('columns') == 'col-md-6 kijker'):?>
-  <div class="content col-md-6">
-              <?php echo $block->dataValue('text');?>
-  </div>
-  <div class="col-md-6">
-    <div class="row">
+  <div class="container">
+  <?php if ($this->heading): ?>
+    <h2 class="title is-3 is-family-secondary"><?php echo $this->heading; ?></h2>
   <?php endif; ?>
+
+  <?php if($block->dataValue('text') && $block->dataValue('columns') != 'col-md-6 kijker'):?>
+    <div class="content">
+      <?php echo $block->dataValue('text');?>
+    </div>
+  <?php endif; ?>
+
+  <?php if($this->resources):?>
+    <div class="row">
+  <?php if($block->dataValue('text') && $block->dataValue('columns') == 'col-md-6 kijker'):?>
+      <div class="content col-md-6">
+        <?php echo $block->dataValue('text');?>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+  <?php endif; ?>
+
   <?php
       $headingTerm = $this->siteSetting('browse_heading_property_term', 'dcterms:title');
       $bodyTerm = $this->siteSetting('browse_body_property_term', 'dcterms:description');
@@ -157,52 +50,51 @@ $assetUrl = $plugins->get('assetUrl');
         else:
           $type= "Object";
         endif;
-      ?>
-                  <?php
-              $mediaurl = "";
-              if($resourceType == 'item-set'):
-                $media = $resource->thumbnail();
-                if($media):
-                  if(sizeof($this->resources) <= 2):
-                    $mediaurl = str_replace('http:','',$media->assetUrl('large'));
-                  else:
-                    $mediaurl = str_replace('http:','',$media->assetUrl('medium'));
-                  endif;
-                endif;
-              else:
-                $media = $resource->media();
-                if($media):
-                  if(sizeof($this->resources) <= 2):
-                    $mediaurl = str_replace('http:', '', $media[0]->thumbnailUrl('large'));
-                  else:
-                    $mediaurl = str_replace('http:', '', $media[0]->thumbnailUrl('medium'));
-                  endif;
-                else:
-                  $mediaurl = $assetUrl('thumbnails/default.png', 'Omeka', true); 
-                endif;
-              endif;
-              $url = $resource->url();
-            ?>
 
-  <div class="col-xs-12 <?php echo $block->dataValue('columns');?>" style="margin-bottom: 2%;">
-  <a href="<?php echo $url;?>" style="text-decoration: none;">
-    <div class="card-gray"><img alt="<?php echo $resource->displayTitle();?>" class="card-img-top img-fluid" src="<?php echo  $mediaurl;?>" />
-      <div class="card-block">
-        <h4 class="card-tag"><?php echo $resource->displayTitle();?></h4>
+        $mediaurl = "";
+        if($resourceType == 'item-set'):
+          $media = $resource->thumbnail();
+          if($media):
+            if(sizeof($this->resources) <= 2):
+              $mediaurl = str_replace('http:','',$media->assetUrl('large'));
+            else:
+              $mediaurl = str_replace('http:','',$media->assetUrl('medium'));
+            endif;
+          endif;
+        else:
+          $media = $resource->media();
+            if($media):
+              if(sizeof($this->resources) <= 2):
+                $mediaurl = str_replace('http:', '', $media[0]->thumbnailUrl('large'));
+              else:
+                $mediaurl = str_replace('http:', '', $media[0]->thumbnailUrl('medium'));
+              endif;
+            else:
+              $mediaurl = $assetUrl('thumbnails/default.png', 'Omeka', true); 
+            endif;
+        endif;
+        $url = $resource->url();
+    ?>
+
+          <div class="col-xs-12 <?php echo $block->dataValue('columns');?>" style="margin-bottom: 2%;">
+            <a href="<?php echo $url;?>" style="text-decoration: none;">
+              <div class="card-gray"><img alt="<?php echo $resource->displayTitle();?>" class="card-img-top img-fluid" src="<?php echo  $mediaurl;?>" />
+                <div class="card-block">
+                  <h4 class="card-tag"><?php echo $resource->displayTitle();?></h4>
+                </div>
+              </div>
+            </a>
+          </div>
+      <?php endforeach; ?>
+    <?php if($block->dataValue('text') && $block->dataValue('columns') == 'col-md-6 kijker'):?>
+        </div>
       </div>
+    <?php endif;?>
     </div>
-  </a>
+
+  <div class="text-center">
+    <a class="btn btn-primary" style="margin:3%;" href="/materialendatabank/s/tdc/find?sort=dcterms%3Adate+desc">Meer zoeken</a>
   </div>
-  <?php endforeach; ?>
-            </div>
-</div>
-<?php if($block->dataValue('text') && $block->dataValue('columns') == 'col-md-6 kijker'):?>
-     </div>
-<?php endif;?>
-<div class="text-center">
-<a class="btn btn-primary" style="margin:3%;" href="/tdc/s/tdc/find?sort=dcterms%3Adate+desc">Meer zoeken</a>
-            </div>
-     </div>
-     <?php endif;?>
-     
+  <?php endif;?>
+  </div> 
 </section>

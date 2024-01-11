@@ -1,4 +1,7 @@
 <?php
+
+use ValueSuggest\Suggester\Lc\Search;
+
 $escape = $this->plugin('escapeHtml');
 $siteTitle = $site->title();
 $this->htmlElement('html')->setAttribute('lang', $this->lang());
@@ -33,6 +36,11 @@ if (strpos($url, 'item') !== false) {
 }else{
 $itempage = false;
 }
+if (strpos($url, 'page/rfid') !== false) {
+  $rfid = true;
+}else{
+$rfid = false;
+}
 ?>
 <?php echo $this->doctype(); ?>
 <?php echo $this->htmlElement('html'); ?>
@@ -42,16 +50,16 @@ $itempage = false;
         <?php echo $this->headLink(); ?>
         <?php echo $this->headStyle(); ?>
         <?php echo $this->headScript(); ?>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://kit.fontawesome.com/582fb8c29f.js" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/colcade@0/colcade.js"></script>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-X95H7QQCZD"></script>
+        <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-X95H7QQCZD"></script> -->
 
-        <!-- Google Fonts used in the housestyle -->
+        <!-- Google Fonts used in the housestyle --> 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons&amp;family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap">
         
         <!-- Latest compiled and minified CSS -->
@@ -60,13 +68,13 @@ $itempage = false;
         <link rel="stylesheet" href="//stijl.kuleuven.be/releases/latest/css/wms.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css"/>
 
-        <script>
+        <!-- <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
         
           gtag('config', 'G-X95H7QQCZD');
-        </script>
+        </script> -->
     </head>
 
     <?php echo $this->htmlElement('body'); ?>
@@ -114,7 +122,7 @@ $itempage = false;
         <div class="container container-relative">
           <nav class="nav-header">
             <h2>
-              <a href="<?php echo $site->url(); ?>">Materialenbibliotheek</a>
+              <a href="<?php echo $site->url(); ?>">Materialendatabank – Technisch Documentatiecentrum Gent</a>
               <a
                 href="#"
                 class="btn-toggle hidden-lg-up"
@@ -145,6 +153,66 @@ $itempage = false;
         <?php echo $this->content; ?>            
       </div>
     </div>  
+
+<?php if($rfid):?>
+  <section class="section">
+    <div class="container">
+        <div class="text-center" style="padding-bottom: 2rem;">Leg je materiaal in het vierkant om de technische informatie over dit materiaal op te roepen.</div>
+        <form name="form" id="rfid" action="" method="POST">
+          <input type="text" id="rfidcard" name="rfid" value="" autofocus>
+        </form>
+        <div class="text-center" style="padding-top: 2rem;">
+          <img class="rounded mx-auto d-block" src="<?php echo $this->assetUrl('img/rfid.jpg');?>" alt="RFID plaat">
+        </div>
+    </div>
+    <?php 
+    if(!empty($_POST['rfid'])){
+      $rfidpost = $_POST['rfid'];
+      $itemRepresentation = $this->api()->searchOne('items', ['property' => [['property' => 'tdc:staalnummers','text' => "${rfidpost}",'type' => 'eq',],],])->getContent();
+      //echo $itemRepresentation->displayTitle();
+      //echo $itemRepresentation->value('tdc:staalnummers');
+      //echo $itemRepresentation->id();
+      $itemId = $itemRepresentation->id();
+    }
+    ?>
+</section>
+
+
+
+<script>
+    $(document).ready(function(){
+        $('#rfidcard').focus();
+        $('body').mousemove(function(){
+            $('#rfidcard').focus();
+        });
+        if (<?php echo $itemId; ?> > 0){
+          window.open("/materialendatabank/s/tdc/item/<?php echo $itemId; ?>","_blank");
+        }
+    });
+
+    // var barcode;
+    // var interval;
+    // document.addEventListener('keydown', function(evt){
+    //   if(interval)
+    //     clearInterval(interval);
+    //   if(evt.code == 'Enter'){
+    //     if(barcode)
+    //       handleBarcode(barcode);
+    //     barcode = '';
+    //     return;
+    //   }
+    //   if (evt.key != 'Shift')
+    //     barcode += evt.key;
+    //   // interval = setInterval(() => barcode = '', 20);
+    // })
+
+    // function handleBarcode(scanned_barcode){
+    //   document.querySelector('#rfidcard').innerHTML = scanned_barcode;
+    // }
+
+</script>
+<?php endif;?>
+
     <!-- Include local footer--><!-- LOCAL FOOTER -->
     <footer class="local-footer">
       <div class="footer-info">
@@ -163,12 +231,13 @@ De informatie in deze databank is samengesteld met het oog op informatie verscha
             <a class="reaction" href=""></a>
           </div> -->
         </div>
-        <!-- end container -->      
+        <!-- end container -->    
+          </div>  
       <!-- end footer-info -->
     </footer>
     <!-- END LOCAL FOOTER -->
 
-    </div><a class="scroll-to-top" href="#top">
+    <div><a class="scroll-to-top" href="#top">
       <i class="material-icons">keyboard_arrow_up</i></a>
       <!-- Include global footer-->
       <footer class="global-footer noindex hidden-print">
@@ -198,10 +267,16 @@ De informatie in deze databank is samengesteld met het oog op informatie verscha
                 <li>
                   <a href="https://admin.kuleuven.be/privacy/">Privacybeleid</a>
                 </li>
+                <li>
+                  Design iconen @Nyall Smith
+                </li>
+                <li>
+                  Built by <a href="https://libis.be/">LIBIS</a>
+                </li>
               </ul>
             </div>
             <div class="share">
-              <span>Volg KU&nbsp;Leuven via</span>
+              <span>Volg KU&nbsp;Leuven:</span>
               <a href="https://www.facebook.com/KULeuven/">
                 <svg role="img" width="30" height="30" viewBox="0 0 1792 1792">
                   <title>facebook</title>
@@ -356,8 +431,7 @@ De informatie in deze databank is samengesteld met het oog op informatie verscha
     </aside>
 
     <!-- <script src="../js/all.min.js"></script> -->
-  </body>
-</html>
+
   
   <script>
   $(document).ready(function() {
@@ -388,5 +462,5 @@ De informatie in deze databank is samengesteld met het oog op informatie verscha
 
 <!-- Latest compiled and minified JS -->
 <script src="//stijl.kuleuven.be/releases/latest/js/all.min.js"></script>
-
+</body>
 </html>
