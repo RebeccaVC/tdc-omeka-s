@@ -64,7 +64,6 @@ $options = $searchPage->setting('facet', []);
     <h3><?= $translate('Filters') ?></h3>
 
     <?php if ($displayActive && count($activeFacets)): ?>
-        <!-- <?php var_dump($activeFacets); ?> -->
     <h4><?= $translate('Actieve filters') ?></h4>
     <ul class="search-facets-active">
         <?php foreach ($activeFacets as $name => $facetValues) foreach ($facetValues as $facetValue): ?>
