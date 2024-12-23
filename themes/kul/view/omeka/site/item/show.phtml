@@ -6,7 +6,7 @@ $this->htmlElement('body')->appendAttribute('class', 'item resource show');
 $embedMedia = $this->siteSetting('item_media_embed', false);
 $itemMedia = $item->media();
 $template = $item->resourceTemplate();
-$alleToepassingen = array('draagstructuur','constructie - isolatie (thermisch)','constructie - isolatie (akoestisch)','constructie - ventilatie','constructie - wand', 'constructie - vloer', 'constructie - dak', 'afwerking - wand (binnen)','afwerking - wand (buiten)','afwerking - vloer','afwerking - plafond','afwerking - coatings','afwerking - dak','gebouwopeningen - deuren','gebouwopeningen - ramen','inrichting - meubilair','inrichting - textiel','bevestiging- en verwerkingsmateriaal');
+$alleToepassingen = array('onderbouw','draagstructuur','isolatie (thermisch)','isolatie (akoestisch)','ventilatie','constructie - wand', 'constructie - vloer', 'constructie - dak', 'afwerking - wand (binnen)','afwerking - wand (buiten)','afwerking - vloer','afwerking - plafond','afwerking - coatings','afwerking - dak','binnenschrijnwerk','buitenschrijnwerk','inrichting - meubilair','inrichting - textiel','bevestiging- en verwerkingsmateriaal','verwarming en koeling','elektriciteit','sanitair');
 if($template):
   $type = $template->label();
 else:
@@ -148,11 +148,11 @@ endif;
     <div class="col-xs-12 col-md-7">
         <span class="text-left"><h3>Vindplaats Gent: <?php echo $item->value('tdc:vindplaats');?></h3></span>
         <?php if ($item->value('tdc:vindplaatsBrussel')): ?>
-        <span class="text-left"><h3>Vindplaats Brussel: <?php echo $item->value('tdc:vindplaatsBrussel');?></h3></span>
+        <span class="text-left"><h3>Vindplaats Campus Rabot Gent: <?php echo $item->value('tdc:vindplaatsBrussel');?></h3></span>
         <?php endif; ?>
         <div class="text-box card card-gray" style="margin-bottom:0; margin-top:10px;">
           <div style="margin:5%"><?php echo $item->value('tdc:korteBeschrijving');?></div>
-          <div style="padding:15%;">
+          <div style="padding:10%;">
           <?php
                 $toepassingen = $item->value('tdc:toepassingen', ['all' => true]);
                 foreach ($alleToepassingen as $toep){ 

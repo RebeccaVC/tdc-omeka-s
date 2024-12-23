@@ -37,6 +37,8 @@
             </div>
           <?php else:?>
             <div class="col-md-6">
+            <div class="card card-gray">
+              <div class="card-body">
               <?php if($attachments):
                 $media = $attachments[0]->media();
                 if($media):
@@ -53,15 +55,19 @@
                 <?php endif;?>
               <figcaption><?php echo $attachments[0]->caption();?></figcaption>
               <?php endif;?>
+              </div>
+            </div>
             </div>
             <div class="col-md-6">
-              <h2 class="title is-3 is-family-secondary"><?php echo $block->dataValue('title');?></h2>
-              <div class="content">
+              <div class="card card-gray">
+              <div class="card-body">
+              <h2 class="card-title"><?php echo $block->dataValue('title');?></h2>
                 <?php echo $block->dataValue('text');?>
               </div>
               <?php if($block->dataValue('link')):?>
                   <a class="link link--ext spacer" href="<?php echo $block->dataValue('link');?>"><?php echo $block->dataValue('label');?></a>
               <?php endif;?>
+              </div>
             </div>
           <?php endif;?>
       </div>

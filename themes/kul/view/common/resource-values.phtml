@@ -76,6 +76,8 @@ $notalt = array('korte beschrijving', 'Collectie ID','Referenties object','Beeld
                 ?>
                 <?php elseif($propertyData['property']->label() == 'categorie'):?>
                   <a target="_blank" href="/materialendatabank/s/tdc/find?facet[tdc:categorie][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
+                <?php elseif($propertyData['property']->label() == 'materiaalsoort'):?>
+                  <a target="_blank" href="/materialendatabank/s/tdc/find?facet[tdc:materiaalsoort][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
                 <?php elseif($propertyData['property']->label() == 'toepassingen'):?>
                   <a target="_blank" href="/materialendatabank/s/tdc/find?facet[tdc:toepassingen][]=<?php echo $value->asHtml(); ?>"><?php echo $value->asHtml(); ?></a>
                 <?php elseif($propertyData['property']->label() == 'samenstelling'):?>

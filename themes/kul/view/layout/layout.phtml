@@ -76,7 +76,25 @@ $rfid = false;
           gtag('config', 'G-X95H7QQCZD');
         </script> -->
     </head>
-
+<style>
+  .open {
+    background: #1f5ea9;
+  color: white;
+  padding: 0rem 0.6rem;
+  border-radius: 50%;
+  margin-left: 0.2rem;
+  font-size: 0.9rem;
+  display: inline-block;
+  }
+  .tooltip-content {
+  padding: 1rem 2rem 1rem 1rem;
+  background: #1f5ea9;
+  color: white;
+  z-index: 100;
+  font-weight: 300;
+  margin:2em 0;
+  }
+</style>
     <?php echo $this->htmlElement('body'); ?>
     <?php echo $userBar; ?>
     <div class="l-page">
@@ -219,9 +237,9 @@ $rfid = false;
         <div class="container">
           <?php if($itempage){ ?>
             <div class="text-justify"><p>
-          <b>Belangrijke info:</b> <em>De gegevens in deze databank zijn gebaseerd op technische documentatie die beschikbaar gesteld is door de fabrikant van het materiaal of product. Hoewel de informatie in deze databank regelmatig wordt bijgewerkt, mag men er niet van uitgaan dat deze informatie de meest recente gegevens bevatten met betrekking tot het materiaal of product. Voor de meest recente en correctie informatie, moet de website van de fabrikant geconsulteerd worden. De materialenbibliotheek neemt deze gegevens over van de fabrikant, zonder de juistheid ervan te controleren. De materialenbibliotheek kan geen garanties geven over de kwaliteit van de materialen of producten in deze databank.</br>
+          <b>Belangrijke info:</b> <em>De gegevens in deze databank zijn gebaseerd op technische documentatie die beschikbaar gesteld is door de fabrikant van het materiaal of product. Hoewel de informatie in deze databank regelmatig wordt bijgewerkt, mag men er niet van uitgaan dat deze informatie de meest recente gegevens bevatten met betrekking tot het materiaal of product. Voor de meest recente en correctie informatie, moet de website van de fabrikant geconsulteerd worden. De materialenbibliotheek neemt deze gegevens over van de fabrikant, zonder de juistheid ervan te controleren. Sommige informatie werd rechtstreeks aangeleverd door de fabrikant en werd steekproefgewijs gecontroleerd. De materialenbibliotheek kan geen garanties geven over de kwaliteit van de materialen of producten in deze databank.</br>
 
-De informatie in deze databank is samengesteld met het oog op informatie verschaffen voor studenten aan de KU Leuven Faculteit Architectuur, om een beter inzicht te krijgen in verschillende materialen, hun eigenschappen en toepassingen. Het is een overzicht van de materialen aanwezig in de bibliotheek, en is op geen enkele manier een exhaustieve databank van materialen of producten. Het is ook niet de bedoeling van de databank om materialen van verschillende producenten tegenover elkaar te plaatsen.
+De informatie in deze databank is samengesteld met het oog op informatie verschaffen voor studenten aan de KU Leuven Faculteit Architectuur en Faculteit Industriële Ingenieurswetenschappen, om een beter inzicht te krijgen in verschillende materialen, hun eigenschappen en toepassingen. Het is een overzicht van de materialen aanwezig in de bibliotheek, en is op geen enkele manier een exhaustieve databank van materialen of producten. Het is ook niet de bedoeling van de databank om materialen van verschillende producenten tegenover elkaar te plaatsen.
             </em></p></div>
           <?php } ?>
 
@@ -457,6 +475,30 @@ De informatie in deze databank is samengesteld met het oog op informatie verscha
 
     $(".navigation li:nth-last-child(3) a").attr('target', '_blank');
   });
+
+    function waitForElement(selector) {
+    return new Promise((resolve) => {
+        const observer = new MutationObserver((mutations, observer) => {
+            const element = document.querySelector(selector);
+            if (element) {
+                observer.disconnect();
+                resolve(element);
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+        });
+    });
+}
+
+// Usage
+waitForElement('.chosen-search-input').then((element) => {
+  $(".chosen-search-input").removeAttr('readonly');
+  $(".chosen-container-single-nosearch").removeClass("chosen-container-single-nosearch");
+    // Perform actions on the element
+});
   </script>
 
 

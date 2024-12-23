@@ -129,6 +129,7 @@ class CustomVocab extends AbstractDataType implements ValueAnnotatingInterface
     protected function getLiteralForm(PhpRenderer $view)
     {
         $terms = array_map('trim', preg_split("/\r\n|\n|\r/", $this->vocab->terms()));
+        asort($terms);
         $valueOptions = array_combine($terms, $terms);
         $select = new Select('customvocab');
         $select->setAttribute('data-value-key', '@value')
