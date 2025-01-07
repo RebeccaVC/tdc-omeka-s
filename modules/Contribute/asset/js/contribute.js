@@ -1,5 +1,4 @@
-const { required } = require("yargs");
-
+//const { required } = require("yargs");
 $(document).ready(function() {
 
     // Get fields and mediaFields from html.
