@@ -1,16 +1,19 @@
-version: '2'
-
 services:
-
   omeka-s:
     build: ./
+    networks:
+      - my-network
     ports:
       - "9018:80"
     volumes:
-      - ./modules/:/var/www/html/tdc/modules/
-      - ./themes/:/var/www/html/tdc/themes/
-      - ./files/:/var/www/html/tdc/files/
-      - ./config/:/var/www/html/tdc/config/
-      - ./htaccess:/var/www/html/tdc/.htaccess
-      - ./imagemagick-policy.xml:/var/www/html/tdc/imagemagick-policy.xml
+      - ./modules/:/var/www/html/materialendatabank/modules/
+      - ./themes/:/var/www/html/materialendatabank/themes/
+      - /files/:/var/www/html/materialendatabank/files/
+      - ./config/:/var/www/html/materialendatabank/config/
+      - ./.htaccess:/var/www/html/materialendatabank/.htaccess
     restart: "no"
+
+networks:
+  my-network:
+    external:
+      name: dev-network

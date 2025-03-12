@@ -57,10 +57,7 @@ endif;
   </div>
  
   <h1><?php echo $item->displayTitle(); ?></h1>
-  <?php if($type == 'Nieuws'):?>
-    <!--<h2 class="subtitle is-6"><?php echo date('d-m-Y',strtotime($item->value('dcterms:date'))); ?></h2>-->
-  <?php endif;?> 
-
+  
   <?php
     $viewerlink = '';$fls=[];
   ?>
@@ -146,7 +143,7 @@ endif;
   <?php else:?>
     <div class="row" style="margin-bottom: 2rem;">
     <div class="col-xs-12 col-md-7">
-        <span class="text-left"><h3>Vindplaats Gent: <?php echo $item->value('tdc:vindplaats');?></h3></span>
+        <span class="text-left"><h3>Vindplaats Materialenbibliotheek Gent: <?php echo $item->value('tdc:vindplaats');?></h3></span>
         <?php if ($item->value('tdc:vindplaatsBrussel')): ?>
         <span class="text-left"><h3>Vindplaats Campus Rabot Gent: <?php echo $item->value('tdc:vindplaatsBrussel');?></h3></span>
         <?php endif; ?>

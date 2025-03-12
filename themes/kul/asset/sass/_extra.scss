@@ -9,13 +9,12 @@
     margin-right: 3px;
 }
 
-
-
 //contributions
 .contribute.main-form{
    font-size:0.9rem; 
    h4{
     font-size:1rem !important;
+    margin-bottom: 0;
    }
     .form-control{
       display:inline !important;
@@ -33,4 +32,80 @@
       }
     }
 }
+
+.open {
+  background: #067aac;
+  color: white;
+  text-align: center;
+  border-radius: 55%;
+  margin-left: 0.2rem;
+  font-size: 0.9rem;
+  display: inline-block;
+  width:20px;
+  height: 20px;
+}
+ 
+.tooltip-content {
+  position: absolute;
+  padding: 1.5rem;
+  background: #067aac;
+  color: white;
+  z-index: 100;
+  font-weight: 300;
+  margin:2em 0;
+
+  .close{
+    color: white;
+    font-size: 1rem;
+    opacity: 1;
+    top: 0;
+    position: absolute;
+    right: 0;
+    padding: 0.7rem 1rem;
+    text-shadow: none;
+
+    &:hover{
+      color:white !important;
+      opacity: 0.8;
+    }
+  }
+}
   
+.property .values .value {
+  margin-top: 5px;
+}
+
+//guest
+.guest-widget{
+  margin-bottom:1rem;
+}
+
+.breadcrumb{
+  padding:0 !important;
+}
+
+.page-actions{
+  margin-top: 1rem;
+}
+
+.search-facet-item{
+  padding-left: 1rem;
+}
+
+.search-facet-item{
+  display: flex !important;
+  align-items: baseline;
+
+  input{
+    margin: 5px 5px 5px 0;
+  }
+}
+
+.uri{
+  .input-container{
+    margin-top: 5px !important;
+  }
+  .label-container{
+    display: none;
+  }
+}

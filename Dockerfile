@@ -40,6 +40,11 @@ RUN usermod -u 1000 www-data \
   &&  mv /var/www/omeka-s /var/www/html/materialendatabank/ \
   &&  chown -R www-data:www-data /var/www/html/
 
+# Content
+COPY .htaccess /var/www/html/materialendatabank
+COPY themes /var/www/html/materialendatabank/themes
+COPY modules /var/www/html/materialendatabank/modules  
+
 ADD php.ini-development /usr/local/etc/php
 
 COPY extra.ini /usr/local/etc/php/conf.d/

@@ -166,6 +166,7 @@ $disabled = $mode === 'read' ? ' disabled="disabled"' : '';
                                     <span id="<?php echo $field['property']->id();?>" class="open" style="cursor:pointer;"> i </span>                                   
                                 <?php endif;?>                    
                             <?php endif;?>    
+                    <?php echo $field['required'] ? "*" : "" ;?>        
                 </h4>
                 <?php if($templateProperty):?>
                         <?php if($templateProperty->alternateComment()):?>                            
@@ -261,6 +262,7 @@ $disabled = $mode === 'read' ? ' disabled="disabled"' : '';
             </div>
             <?php endforeach; // Next field/property. ?>
 
+           
     <?php if ($isMainForm): ?>
         </fieldset>
 
